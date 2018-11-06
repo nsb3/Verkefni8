@@ -25,8 +25,8 @@ const text = (() => {
   function formHandler(e) {
     e.preventDefault();
     let value = document.querySelector(".form__input").value;
-    if(value){
-      console.log('smellt a takka');
+    let r = new RegExp('^\\s*$');
+    if(value && !r.test(value)){
       add(value);
     }
     document.querySelector(".form__input").value = '';
@@ -46,6 +46,7 @@ const text = (() => {
       let nytt = el("input","item__edit","text");
       nytt.value = text;
       e.target.parentNode.replaceChild(nytt, e.target);
+      nytt.focus();
       nytt.addEventListener('keypress',commit);
     }
   }
